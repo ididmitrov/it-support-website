@@ -53,7 +53,7 @@ a {
 }
 
 .nav-wrap {
-  min-height: 74px;
+  min-height: 82px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,14 +67,17 @@ a {
 }
 
 .brand-logo {
-  width: 36px;
-  height: 36px;
+  height: 54px;
+  width: auto;
+  max-width: 200px;
   object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08));
 }
 
 .brand-text {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
 }
 
 .nav-toggle {
@@ -99,7 +102,7 @@ a {
 
 .main-nav {
   position: absolute;
-  top: 74px;
+  top: 82px;
   left: 0;
   right: 0;
   background: var(--white);
@@ -117,6 +120,16 @@ a {
 .main-nav a:hover {
   color: var(--primary);
 }
+
+.main-nav .lang-switch {
+  color: var(--primary);
+  border: 1px solid #bdd7ff;
+  border-radius: 8px;
+  margin: 0.5rem 4%;
+  padding: 0.45rem 0.75rem;
+  text-align: center;
+}
+
 
 .main-nav.is-open {
   display: flex;
@@ -203,18 +216,64 @@ h2 {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 1.1rem;
+  padding: 1.35rem 1.25rem;
+  display: grid;
+  gap: 1rem;
 }
 
 .hero-card h2 {
-  font-size: 1.15rem;
-  margin-bottom: 0.65rem;
+  font-size: 1.2rem;
+  margin: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.hero-card ul {
+.hero-card-body {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.hero-card-lead {
   margin: 0;
-  padding-left: 1.1rem;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.hero-card-intro {
+  margin: 0;
   color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.hero-benefits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.hero-benefits li {
+  position: relative;
+  padding-left: 1.55rem;
+  color: var(--muted);
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.hero-benefits li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.42rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(11, 94, 215, 0.14);
 }
 
 .section {
@@ -501,6 +560,76 @@ h2 {
 .service-security .w2 { animation-delay: 0.35s; }
 .service-security .w3 { animation-delay: 0.7s; }
 
+.service-web .browser-frame {
+  fill: #f3f8ff;
+  stroke: #709fe2;
+  stroke-width: 2;
+}
+
+.service-web .browser-bar {
+  fill: #d7e7ff;
+}
+
+.service-web .browser-dot {
+  fill: #4d80cc;
+}
+
+.service-web .url-bar {
+  fill: #eaf2ff;
+  stroke: #8eb4ea;
+  stroke-width: 1.4;
+}
+
+.service-web .layout-header {
+  fill: #5e90dc;
+  opacity: 0.9;
+}
+
+.service-web .layout-sidebar {
+  fill: #c5dcff;
+  stroke: #7aa5e6;
+  stroke-width: 1.6;
+}
+
+.service-web .layout-block {
+  fill: #4f86da;
+  opacity: 0.82;
+  animation: codeBreath 2.4s infinite ease-in-out;
+}
+
+.service-web .b2 { animation-delay: 0.3s; }
+.service-web .b3 { animation-delay: 0.6s; }
+
+.service-web .phone-frame {
+  fill: #dceaff;
+  stroke: #6d9ce0;
+  stroke-width: 2;
+}
+
+.service-web .phone-screen {
+  fill: #f3f8ff;
+  stroke: #85ace6;
+  stroke-width: 1.6;
+}
+
+.service-web .phone-block {
+  fill: #5e90dc;
+  opacity: 0.75;
+  animation: codeBreath 2.6s infinite ease-in-out;
+}
+
+.service-web .pb2 {
+  animation-delay: 0.4s;
+}
+
+.service-web .sync-line {
+  stroke: #4e83d5;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 4 5;
+  animation: moveDash 2.2s linear infinite;
+}
+
 @keyframes blinkPort {
   0%, 100% { fill: #f4f9ff; }
   50% { fill: #4b82d0; }
@@ -547,26 +676,27 @@ h2 {
   gap: 1.2rem;
 }
 
-.stats {
+.highlights {
   display: grid;
   gap: 0.8rem;
 }
 
-.stats div {
+.highlights div {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--white);
   padding: 0.9rem 1rem;
 }
 
-.stats strong {
+.highlights strong {
   display: block;
   color: var(--primary);
-  font-size: 1.4rem;
-  line-height: 1.1;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
 }
 
-.stats span {
+.highlights span {
   color: var(--muted);
   font-size: 0.95rem;
 }
@@ -624,7 +754,7 @@ h2 {
   font-weight: 600;
 }
 
-.contact-form input,
+.contact-form input:not(.iti__search-input),
 .contact-form textarea {
   width: 100%;
   border: 1px solid #c7d5ea;
@@ -633,10 +763,101 @@ h2 {
   font: inherit;
 }
 
-.contact-form input:focus,
+.contact-form textarea {
+  resize: none;
+}
+
+.contact-form input:not(.iti__search-input):focus,
 .contact-form textarea:focus {
   border-color: var(--primary);
   outline: 2px solid rgba(11, 94, 215, 0.2);
+}
+
+.contact-form .iti {
+  width: 100%;
+}
+
+.contact-form .iti__tel-input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #c7d5ea;
+  border-radius: 10px;
+  padding: 0.7rem 0.7rem 0.7rem 0.55rem;
+  font: inherit;
+}
+
+.contact-form .iti__tel-input:focus {
+  border-color: var(--primary);
+  outline: 2px solid rgba(11, 94, 215, 0.2);
+}
+
+.contact-form .iti__country-container {
+  border-radius: 10px 0 0 10px;
+}
+
+.contact-form .iti__selected-country {
+  border-radius: 10px 0 0 10px;
+  padding-left: 0.55rem;
+  padding-right: 0.35rem;
+}
+
+.contact-form .iti__selected-country-primary {
+  border-radius: 10px 0 0 10px;
+}
+
+.contact-form .iti--separate-dial-code .iti__selected-dial-code {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.contact-form .phone-field.is-invalid .iti__tel-input {
+  border-color: #dc3545;
+  outline: 2px solid rgba(220, 53, 69, 0.15);
+}
+
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.formsubmit-iframe {
+  display: none;
+  width: 0;
+  height: 0;
+  border: 0;
+}
+
+.form-feedback {
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.form-feedback.is-hiding {
+  opacity: 0;
+}
+
+.form-feedback.is-success {
+  color: #0f5132;
+  background: #d1e7dd;
+  border: 1px solid #a3cfbb;
+}
+
+.form-feedback.is-error {
+  color: #842029;
+  background: #f8d7da;
+  border: 1px solid #f1aeb5;
+}
+
+.contact-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .form-note {
@@ -680,6 +901,11 @@ h2 {
 
   .main-nav a:hover {
     background: #eff6ff;
+  }
+
+  .main-nav .lang-switch {
+    margin: 0;
+    padding: 0.45rem 0.65rem;
   }
 
   .hero-grid,
@@ -727,7 +953,10 @@ h2 {
   .service-hardware .trace,
   .service-hardware .diag-node,
   .service-security .cam-led,
-  .service-security .scan {
+  .service-security .scan,
+  .service-web .layout-block,
+  .service-web .phone-block,
+  .service-web .sync-line {
     animation: none;
   }
 }
